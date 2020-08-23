@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import video from './TestBackground.mp4'
+import * as Raider from './api/raider';
+import MythicAffix from './components/MythicAffix';
+import AffixList from './components/AffixList';
+import './App.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends React.Component {
+    state = { affixData: [] };
+
+    fetchMythicAffixes = async ()  => {
+        const response = await Raider.client.get(Raider.MYTHIC_ROUTE);
+
+        console.log('Jul ', response); 
+        this.setState({ affixData: response.data.affix_details })
+    }
+    componentDidMount() {
+        this.fetchMythicAffixes();
+    }
+    render() {
+        return (
+            <div className="wrapper">
+                <div className="container">
+                    <video className="video-bg" autoPlay={true} loop={true} src={video}></video>
+                </div>
+                <AffixList affixData={this.state.affixData}/>
+            </div>
+        );
+    }
 }
 
 export default App;
