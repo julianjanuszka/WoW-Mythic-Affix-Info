@@ -21,7 +21,7 @@ export class App extends React.Component {
         return (
             <div className="wrapper">
                 <div className="container">
-                    <video className="video-bg" autoPlay={true} loop={true} src={video}></video>
+                    <video className="video-bg" autoPlay loop src={video}></video>
                 </div>
                 <AffixList affixData={this.state.affixData}/>
             </div>

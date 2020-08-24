@@ -3,7 +3,6 @@ import MythicAffix from './MythicAffix';
 import './AffixList.scss'
 
 const AffixList = props => {
-    debugger;
     const affixes = props.affixData?.map((affix) => {
         return(
             <MythicAffix
